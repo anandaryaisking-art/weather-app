@@ -23,6 +23,7 @@ interface FavoriteCity {
   country: string | null;
   latitude: number;
   longitude: number;
+  createdAt: string;
 }
 
 interface SearchHistoryItem {
