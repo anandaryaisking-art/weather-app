@@ -20,7 +20,7 @@
   "dependencies": {
     "embla-carousel-react": "latest",
     "input-otp": "latest",
-    "react-day-picker": "latest",
+    "react-day-picker": "^9.0.0",
     "react-hook-form": "latest",
     "react-resizable-panels": "latest",
     "vaul": "latest",
