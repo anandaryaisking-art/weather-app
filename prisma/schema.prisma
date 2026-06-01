@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model SearchHistory {
+  id        String   @id @default(cuid())
+  city      String
+  country   String?
+  latitude  Float?
+  longitude Float?
+  ipAddress String?
+  createdAt DateTime @default(now())
+
+  @@index([city])
+  @@index([createdAt])
+}
+
+model FavoriteCity {
+  id        String   @id @default(cuid())
+  city      String
+  country   String?
+  latitude  Float
+  longitude Float
+  createdAt DateTime @default(now())
+
+  @@unique([city, country])
+}

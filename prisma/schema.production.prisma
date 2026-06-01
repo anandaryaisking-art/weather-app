@@ -1,0 +1,47 @@
+// =============================================
+// Production Schema (PostgreSQL)
+// =============================================
+// To use this schema for Vercel/production deployment:
+//
+// 1. Copy this file over schema.prisma:
+//    cp prisma/schema.production.prisma prisma/schema.prisma
+//
+// 2. Set your DATABASE_URL in Vercel environment variables
+//
+// 3. Run: npx prisma db push
+//
+// Or use the switch script:
+//    npm run db:switch:prod
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model SearchHistory {
+  id        String   @id @default(cuid())
+  city      String
+  country   String?
+  latitude  Float?
+  longitude Float?
+  ipAddress String?
+  createdAt DateTime @default(now())
+
+  @@index([city])
+  @@index([createdAt])
+}
+
+model FavoriteCity {
+  id        String   @id @default(cuid())
+  city      String
+  country   String?
+  latitude  Float
+  longitude Float
+  createdAt DateTime @default(now())
+
+  @@unique([city, country])
+}
